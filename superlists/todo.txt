@@ -1,0 +1,1 @@
+Page 139. We are to deploy our site to a staging server. Great chapter I really need to read all the way through this to get some extra python related sysadmin tips and what not. But I can do all this at some later time and my DigitalOcean bill is already getting kinda high so I'm just going to skip through and get to more development. I really need to learn how to use Fabric!"
