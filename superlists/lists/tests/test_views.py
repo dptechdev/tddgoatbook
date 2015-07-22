@@ -8,11 +8,11 @@ from lists.models import Item, List
 
 class HomePageTest(TestCase):
 	
-	@unittest.skip
+	#@unittest.skip
 	def test_root_url_resolves_to_home_page_view(self):
 		found = resolve('/')
 		self.assertEqual(found.func, home_page)
-	@unittest.skip
+	#@unittest.skip
 	def test_home_page_returns_correct_html(self):
 		request = HttpRequest()
 		response = home_page(request)
@@ -136,6 +136,13 @@ class NewListTest(TestCase):
 		self.assertRedirects(response, '/lists/%d/' % (new_list.id,))
 
 
+	def test_validation_errors_are_sent_back_to_home_page_template(self):
+		response = self.client.post('/lists/new', data={'item_text': ''})
+		self.assertEqual(response.status_code, 200)
+		self.assertTemplateUsed(response, 'home.html')
+		expected_error = "You can't have an empty list item"
+		self.assertContains(response, expected_error)
+		
 
 class NewItemTest(TestCase):
 	
